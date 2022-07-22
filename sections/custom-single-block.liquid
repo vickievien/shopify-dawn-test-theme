@@ -24,7 +24,7 @@
     <a class="custom_single_block__img_wrapper" href="{{ section.settings.custom_single_block__button_url }}">
       {%- if section.settings.custom_single_block__img != blank -%}
         <img class="custom_single_block__img" 
-        src="{{ section.settings.custom_single_block__img | image_url: width: 150, height: 200 }} 150w" 
+        src="{{ section.settings.custom_single_block__img | image_url: width: 1000 }} 1000w" 
         alt="{{ section.settings.custom_single_block__img.alt }}">
       {%- else -%}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}

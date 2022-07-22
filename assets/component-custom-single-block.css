@@ -1,5 +1,5 @@
 :root {
-    --custom-purple: #443655;
+    --custom-purple: #4f3274;
 }
 
 .custom_single_block {
@@ -53,6 +53,10 @@
     display: block;
     object-fit: cover;
     object-position: center;
+}
+
+.placeholder-svg {
+    border: 1px solid black;
 }
 
 .custom_single_block__button,
