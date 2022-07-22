@@ -6,6 +6,11 @@
   margin-bottom: 3rem;
 }
 
+.faq__block_wrapper > h2,
+.faq__block_wrapper > p {
+  color: #248724;
+}
+
 @media screen and (min-width: 750px) {
   .main-page-title {
     margin-bottom: 4rem;
