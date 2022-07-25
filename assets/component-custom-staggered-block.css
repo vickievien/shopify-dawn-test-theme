@@ -58,7 +58,6 @@
 
 .custom_staggered_block__button_url {
     display: block;
-    color: var(--custom-purple);
     font-weight: bold;
     text-transform: capitalize;
     text-decoration: none;

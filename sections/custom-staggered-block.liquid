@@ -1,7 +1,5 @@
 {{ 'component-custom-staggered-block.css' | asset_url | stylesheet_tag }}
 
-
-
 {%- style -%}
   .staggered-section-{{ section.id }} {
     background-color: {{ section.settings.custom_staggered_block__bg_color_primary }};
@@ -9,11 +7,16 @@
   .staggered-section-{{ section.id }}::before {
     background-color: {{ section.settings.custom_staggered_block__bg_color_accent }};
   }
+  {% for block in section.blocks %}
+    .staggered-block-{{ block.id }} .custom_staggered_block__button_url  {
+      color: {{ block.settings.custom_staggered_block__button_color }};
+    }
+  {% endfor %}
 {%- endstyle -%}
 
 <div class="custom_staggered_block__section staggered-section-{{ section.id }}" data-flickity='{ "parallax": true, "prevNextButtons": false, "watchCSS": true }' >
     {% for block in section.blocks %}
-        <div class="custom_staggered_block__wrapper">
+        <div class="custom_staggered_block__wrapper staggered-block-{{ block.id }}">
             <a class="custom_staggered_block__image_wrapper" {{ block.shopify_attributes }} href="{{ block.settings.custom_staggered_block__button_url }}"> 
                 {%- if block.settings.custom_staggered_block__image != blank -%}
                     <img 
@@ -69,6 +72,12 @@
           "id": "custom_staggered_block__button_url",
           "type": "url",
           "label": "Button link"
+        },
+        {
+          "id": "custom_staggered_block__button_color",
+          "type": "color",
+          "label": "Button text color",
+          "default": "#4f3274"
         }
       ]
     }
