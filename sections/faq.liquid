@@ -18,6 +18,15 @@
     color: {{ section.settings.faq_answer_color }};
   }
 
+  {% for block in section.blocks %}
+    .faq-question-{{ block.id }} {
+      color: {{ block.settings.faq_question_color }}
+    }
+    .faq-answer-{{ block.id }} {
+      color: {{ block.settings.faq_answer_color }}
+    }
+  {% endfor %}
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -64,18 +73,6 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    },
-    {
-      "id": "faq_question_color",
-      "type": "color",
-      "label": "Question text color",
-      "default": "#248724"
-    },
-    {
-      "id": "faq_answer_color",
-      "type": "color",
-      "label": "Answer text color",
-      "default": "#248724"
     }
   ],
   "blocks": [
@@ -83,18 +80,30 @@
       "name": "Question",
       "type": "text",
       "settings": [
-      {
-        "id": "faq__question",
-        "type": "text",
-        "label": "Question",
-        "default": "Question"
-      },
-      {
-        "id": "faq__answer",
-        "type": "text",
-        "label": "Answer",
-        "default": "Answer"
-      }
+        {
+          "id": "faq__question",
+          "type": "text",
+          "label": "Question",
+          "default": "Question"
+        },
+        {
+          "id": "faq_question_color",
+          "type": "color",
+          "label": "Question text color",
+          "default": "#248724"
+        },
+        {
+          "id": "faq__answer",
+          "type": "text",
+          "label": "Answer",
+          "default": "Answer"
+        },
+        {
+          "id": "faq_answer_color",
+          "type": "color",
+          "label": "Answer text color",
+          "default": "#248724"
+        }
       ]
     }
   ],
