@@ -1,5 +1,11 @@
 {{ 'component-custom-single-block.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  .custom_single_block__button-wrapper .custom_single_block__button {
+    color: {{ section.settings.custom_single_block__button_color }};
+    border-color: {{ section.settings.custom_single_block__button_color }};
+  }
+{%- endstyle -%}
 
 <div class="custom_single_block">
     {% for block in section.blocks %}
@@ -31,7 +37,7 @@
       {%- endif -%}
     </a>
     <div class="custom_single_block__button-wrapper">   
-        <a class="custom_single_block__button" href="{{ section.settings.custom_single_block__button_url }}">
+        <a class="custom_single_block__button" target="_blank" href="{{ section.settings.custom_single_block__button_url }}">
             {{ section.settings.custom_single_block__button_text }}
         </a>
     </div> 
@@ -95,6 +101,12 @@
       "id": "custom_single_block__button_url",
       "type": "url",
       "label": "Button link"
+    },
+    {
+      "id": "custom_single_block__button_color",
+      "type": "color",
+      "label": "Button color",
+      "default": "#4f3274"
     }
   ],
   "templates": [

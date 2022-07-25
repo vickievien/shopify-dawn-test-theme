@@ -65,12 +65,11 @@
     padding: 10px 20px;
     width: 245px;
     display: block;
-    color: var(--custom-purple);
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
     letter-spacing: 0.15rem;
-    border: 3px solid var(--custom-purple);
+    border: 3px solid;
     text-decoration: none;
 }
 
