@@ -10,14 +10,6 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  .faq__block_wrapper > h2 {
-    color: {{ section.settings.faq_question_color }};
-  }
-
-  .faq__block_wrapper > p {
-    color: {{ section.settings.faq_answer_color }};
-  }
-
   {% for block in section.blocks %}
     .faq-question-{{ block.id }} {
       color: {{ block.settings.faq_question_color }}
@@ -73,7 +65,7 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    }
+    },
   ],
   "blocks": [
     {
