@@ -1,0 +1,7 @@
+{% assign block_question = block.settings.faq__question %}
+{% assign block_answer = block.settings.faq__answer %}
+
+<div class="faq__block_wrapper">
+    <h2 class="faq-question-{{ block.id }}">{{ block_question }}</h2>
+    <p class="faq-answer-{{ block.id }}">{{ block_answer }}</p>
+</div>

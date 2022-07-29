@@ -1,0 +1,122 @@
+{{ 'component-custom-single-block.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .custom_single_block__button-wrapper .custom_single_block__button {
+    color: {{ section.settings.custom_single_block__button_color }};
+    border-color: {{ section.settings.custom_single_block__button_color }};
+  }
+{%- endstyle -%}
+
+<div class="custom_single_block">
+    {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'image_picker' %}    
+            <div class="custom_single_block__icon_wrapper">            
+                {%- if block.settings.custom_single_block__icon != blank -%}
+                    <img class="custom_single_block__icon" src="{{ block.settings.custom_single_block__icon | image_url: width: 55, height: 55}} 55w" 
+                    alt="{{ block.settings.custom_single_block__icon.alt }}">
+                {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+            </div>
+
+            {% when 'custom-text' %}
+            <div class="custom_single_block__subtitle" {{ block.shopify_attributes }}> {{ block.settings.custom_single_block__subtitle }} </div>
+
+            {% when 'heading' %}
+                <div class="custom_single_block__title" {{ block.shopify_attributes }}> {{ block.settings.custom_single_block__title }} </div>
+        {% endcase %}
+    {% endfor %}
+    <a class="custom_single_block__img_wrapper" href="{{ section.settings.custom_single_block__button_url }}">
+      {%- if section.settings.custom_single_block__img != blank -%}
+        <img class="custom_single_block__img" 
+        src="{{ section.settings.custom_single_block__img | image_url: width: 1000 }} 1000w" 
+        alt="{{ section.settings.custom_single_block__img.alt }}">
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+    <div class="custom_single_block__button-wrapper">   
+        <a class="custom_single_block__button" target="_blank" href="{{ section.settings.custom_single_block__button_url }}">
+            {{ section.settings.custom_single_block__button_text }}
+        </a>
+    </div> 
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Custom single block",
+  "blocks": [
+    {
+      "type": "image_picker",
+      "name": "Insert icon",
+      "settings": [
+        {
+          "id": "custom_single_block__icon",
+          "type": "image_picker",
+          "label": "Icon image"
+        }
+      ]
+    },
+    {
+      "type": "custom-text",
+      "name": "Include a subtitle",
+      "settings": [
+        {
+          "id": "custom_single_block__subtitle",
+          "type": "text",
+          "label": "Subtitle textbox",
+          "default": "Subtitle"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Include a title",
+      "settings": [
+        {
+          "id": "custom_single_block__title",
+          "type": "text",
+          "label": "Title textbox",
+          "default": "Title"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "id": "custom_single_block__img",
+      "type": "image_picker",
+      "label": "Select image"
+    },
+    {
+      "id": "custom_single_block__button_text",
+      "type": "text",
+      "label": "Button text",
+      "default": "View More"
+    },
+    {
+      "id": "custom_single_block__button_url",
+      "type": "url",
+      "label": "Button link"
+    },
+    {
+      "id": "custom_single_block__button_color",
+      "type": "color",
+      "label": "Button color",
+      "default": "#4f3274"
+    }
+  ],
+  "templates": [
+    "index"
+  ],
+  "presets": [
+    {
+      "name": "Custom single block",
+      "category": "custom"
+    }
+  ]
+}
+{% endschema %}

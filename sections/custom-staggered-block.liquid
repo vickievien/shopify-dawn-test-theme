@@ -1,0 +1,109 @@
+{{ 'component-custom-staggered-block.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .staggered-section-{{ section.id }} {
+    background-color: {{ section.settings.custom_staggered_block__bg_color_primary }};
+  }
+  .staggered-section-{{ section.id }}::before {
+    background-color: {{ section.settings.custom_staggered_block__bg_color_accent }};
+  }
+  {% for block in section.blocks %}
+    .staggered-block-{{ block.id }} .custom_staggered_block__button_url  {
+      color: {{ block.settings.custom_staggered_block__button_color }};
+    }
+  {% endfor %}
+{%- endstyle -%}
+
+<div class="custom_staggered_block__section staggered-section-{{ section.id }}" data-flickity='{ "parallax": true, "prevNextButtons": false, "watchCSS": true }' >
+    {% for block in section.blocks %}
+        <div class="custom_staggered_block__wrapper staggered-block-{{ block.id }}">
+            <a class="custom_staggered_block__image_wrapper" {{ block.shopify_attributes }} href="{{ block.settings.custom_staggered_block__button_url }}"> 
+                {%- if block.settings.custom_staggered_block__image != blank -%}
+                    <img 
+                    class="custom_staggered_block__image" {{ block.shopify_attributes }}
+                    src="{{ block.settings.custom_staggered_block__image | image_url: width: 500 }} 500w" 
+                    alt="{{ block.settings.custom_staggered_block__image.alt }}">
+                {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+            </a>
+            <div class="custom_staggered_block__text_wrapper">
+              <div class="custom_staggered_block__title" {{ block.shopify_attributes }}>{{ block.settings.custom_staggered_block__title }}</div>
+              <div class="custom_staggered_block__caption" {{ block.shopify_attributes }}>{{ block.settings.custom_staggered_block__caption }}</div>
+              <a class="custom_staggered_block__button_url" {{ block.shopify_attributes }} href="{{ block.settings.custom_staggered_block__button_url }}">{{ block.settings.custom_staggered_block__button_text }}</a>
+            </div>
+        </div>
+    {% endfor %}  
+</div>
+
+{% schema %}
+{
+  "name": "Custom staggered block",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Block",
+      "type": "custom_block",
+      "settings": [
+        {
+          "id": "custom_staggered_block__image",
+          "type": "image_picker",
+          "label": "Select image"
+        },
+        {
+          "id": "custom_staggered_block__title",
+          "type": "text",
+          "label": "Heading",
+          "default": "Heading text"
+        },
+        {
+          "id": "custom_staggered_block__caption",
+          "type": "text",
+          "label": "Caption",
+          "default": "Caption text"
+        },
+        {
+          "id": "custom_staggered_block__button_text",
+          "type": "text",
+          "label": "Button text",
+          "default": "View More"
+        },
+        {
+          "id": "custom_staggered_block__button_url",
+          "type": "url",
+          "label": "Button link"
+        },
+        {
+          "id": "custom_staggered_block__button_color",
+          "type": "color",
+          "label": "Button text color",
+          "default": "#4f3274"
+        }
+      ]
+    }
+  ],
+  "settings": [
+  {
+    "id": "custom_staggered_block__bg_color_accent",
+    "type": "color",
+    "label": "Accent background color",
+    "default": "#000000"
+  },
+  {
+    "id": "custom_staggered_block__bg_color_primary",
+    "type": "color",
+    "label": "Background color",
+    "default": "#e8e8ea"
+  }
+  ],
+  "templates": [
+    "index"
+  ],
+  "presets": [
+    {
+      "name": "Custom staggered block",
+      "category": "custom"
+    }
+  ]
+}
+{% endschema %}
